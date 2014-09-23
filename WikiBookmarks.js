@@ -3,6 +3,15 @@ function wb_bookmarklet(pg)
 return "javascript:void((function(){\
 var p=location.protocol;\
 if(p!='http:'&&p!='https:'&&p!='ftp:'){return '<meta http-equiv=%22Refresh%22 content=%220; "+wgServer+wgScriptPath+"/index.php?title="+encodeURI(encodeURI(pg))+"%22 />';}\
+if (!( !!f && (typeof f).toLowerCase() == 'function' && (f === Function.prototype || /^\\s*function\\s*(\\b[a-z$_][a-z0-9$_]*\\b)*\\s*\\((|([a-z$_][a-z0-9$_]*)(\\s*,[a-z$_][a-z0-9$_]*)*)\\)\\s*{\\s*\\[native code\\]\\s*}\\s*$/i.test(String(f)))))\
+{\
+var i= document.createElement('iframe');\
+i.height = i.width = 0;\
+document.body.appendChild(i);\
+var m = i.contentWindow.open;\
+document.body.removeChild(i);\
+window.open=m;\
+}\
 var w = window.open('about:blank','WikiBookmarks','width=400,height=150,menubar=no,location=no,resizable=yes,scrollbars=no');\
 var f = w.document.createElement('form');\
 f.method = 'POST';\
@@ -17,4 +26,8 @@ w.document.body.appendChild(f);\
 f.submit();\
 return;\
 })())";
+
+
+
+       
 }
