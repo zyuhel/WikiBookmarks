@@ -25,9 +25,5 @@ inf('selection',(function(){var u;if(window.__proto__.getSelection){u=window.__p
 w.document.body.appendChild(f);\
 f.submit();\
 return;\
-})())";
-
-
-
-       
+})())";       
 }
